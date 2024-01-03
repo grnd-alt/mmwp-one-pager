@@ -9,6 +9,7 @@
   --background: #060e0e;
   --secondary: #2e7f7f;
   --accent: #37c9c9;
+  --bs-secondary-color: rgb(77, 77, 77);
 }
 
 body {
@@ -26,6 +27,10 @@ a{
 .highlight{
   color:var(--primary);
   text-shadow: 0 3px 10px var(--primary)
+}
+
+.text-body-secondary{
+  color:grey;
 }
 
 .img{
