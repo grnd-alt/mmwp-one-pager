@@ -4,32 +4,40 @@ let scale = 1;
 const blob = document.getElementById('blob');
 const headline = document.getElementById('headline');
 const primarycontent = document.getElementById('primarycontent');
+const thirdheaders= document.getElementsByClassName('third-header');
+
+for (let i = 0; i < thirdheaders.length; i++) {
+    console.log(i);
+    thirdheaders[i].addEventListener('click',(event) => {
+        thirdheaders[i].classList.toggle('display')
+    })
+}
 
 
 /**scroll handling */
-let setScaleByScroll = (value) => {
-    console.log(value);
+let setScaleByScroll = async (value) => {
     blob.style.transform = `scale(${value},${value})`;
-    blob.style.opacity = 1 - (value-1)/39;
+    blob.style.opacity = 1 - (value-1)/40;
     headline.style.opacity = 1 - (value-1)/40;
     headline.style.marginTop = `-${value*50}px`;
-    primarycontent.style.opacity = 1 / (1 + Math.exp(-0.2 * ((value-2) - 20)));
+    primarycontent.style.opacity = (value-1)/30;
 }
 
 primarycontent.addEventListener('wheel',(event) => {
-    if (primarycontent.scrollTop + primarycontent.clientHeight >= primarycontent.scrollHeight) {        
+    if (primarycontent.scrollTop + primarycontent.clientHeight >= primarycontent.scrollHeight) {
         if( event.deltaY > 0) {
             return;
         }
     }
-    scale += -1 * event.deltaY * -0.01;
-    scale = Math.max(1,scale);
-    console.log(scale);
-    console.log(event.deltaY);
-    if (scale < 45) {
-        event.preventDefault();
-        setScaleByScroll(scale);
+    if (primarycontent.scrollTop<=100 || scale <=40) {
+        scale += -1 * event.deltaY * -0.01;
+        scale = Math.max(1,scale);
+        if (scale < 40) {
+            event.preventDefault();
+            setScaleByScroll(scale);
+        }
     }
+    console.log(primarycontent.scrollTop,primarycontent.clientHeight);
 })
 
 
@@ -42,7 +50,6 @@ let spinHeader = () => {
     let i = 0;
     for (;i < headline.children.length;i++) {
         let child = headline.children[i];
-        console.log(child.classList);
         if(Array.from(child.classList).indexOf('h1-active') !== -1){
             child.classList.remove('h1-active');
             break;
