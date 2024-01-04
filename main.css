@@ -11,6 +11,32 @@
 }
 
 
+nav{
+    padding-top: 8px;
+    height: 50px;
+}
+
+main{
+    margin-top: 50px;
+    width: 100%;
+}
+
+.navitem svg{
+    mix-blend-mode: difference;
+    max-height: 32px;
+    fill: var(--primary)
+}
+
+header{
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 100;
+    width: 100%;
+}
+
 @keyframes wipe-enter {
 	0% {
 		transform: scale(0, .025);
@@ -19,7 +45,6 @@
 		transform: scale(1, .025);
 	}
 }
-
 
 .introduction{
     #headline{
@@ -32,23 +57,25 @@
         width:100%;
         height:5rem;
         h1{
+            max-width: 100%;
             width: max-content;
             position: absolute;
             top:50%;
             left:50%;
             transform: translate(-50%,-50%);
             line-height: 5rem;
-            font-size: 5rem;
+            font-size: min(10vw,4rem);
             mix-blend-mode: difference;
+            container-name: wordspin;
         };
         h1:not(.h1-active) {
-            animation: slideout 1s;
-            margin-top:1000px;
+            animation: slideout .3s;
+            margin-top:100px;
             opacity: 0;
         }
         h1.h1-active{
             visibility: visible;
-            animation: slidein 1s;
+            animation: slidein .5s;
         }
     }
 }
@@ -59,14 +86,14 @@
       opacity: 1;
     }
     100% {
-      margin-top: -300px;
+      margin-top: -100px;
       opacity: 0;
     }
 }
 
 @-webkit-keyframes slidein {
     0% {
-      margin-top: 300px;
+      margin-top: 100px;
       opacity: 0;
     }
     100% {
@@ -76,8 +103,10 @@
 }
 
 
+
 .blob{
     position: absolute;
+    transition: .1s;
     top:0;
     left:0;
     width: 100%;
@@ -119,10 +148,6 @@
     }
 }
 
-#maincarousel{
-    padding-top: 30px;
-}
-
 
 .highlight{
     color:var(--primary) !important;
@@ -133,14 +158,14 @@ a.highlight:hover{
     color:var(--secondary) !important;
 }
 
-.primarycontent{
-    background-color: var(--primary);
+#primarycontent{    
+    opacity: 0;
     position: absolute;
     left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    visibility: hidden;
+    top:50px;
+    width:100vw;
+    height:100vh;
+    overflow: scroll;
 }
 
 body {
